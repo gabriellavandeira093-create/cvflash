@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CVFLASH — Crée ton CV en 5 minutes</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Inter,Arial,sans-serif;background:#f5f7fb;color:#172033}
+header{background:#fff;border-bottom:1px solid #e7eaf0;padding:16px 5%;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:10}
+.logo{font-size:24px;font-weight:900;color:#4f46e5}.logo span{color:#111827}
+header a{background:#4f46e5;color:white;padding:10px 16px;border-radius:10px;text-decoration:none;font-weight:700}
+.hero{padding:65px 6% 45px;text-align:center;background:linear-gradient(135deg,#eef2ff,#fff)}
+.hero h1{font-size:46px;margin:0 0 15px;letter-spacing:-2px}
+.hero h1 span{color:#4f46e5}.hero p{font-size:18px;color:#667085;max-width:650px;margin:0 auto 25px}
+.badge{display:inline-block;background:#e0e7ff;color:#4338ca;padding:7px 12px;border-radius:30px;font-weight:800;font-size:13px;margin-bottom:15px}
+.container{max-width:1200px;margin:35px auto;padding:0 20px;display:grid;grid-template-columns:430px 1fr;gap:25px}
+.card{background:white;border:1px solid #e5e7eb;border-radius:18px;padding:22px;box-shadow:0 8px 30px #1720330b}
+.card h2{margin-top:0}.section{border-top:1px solid #eee;padding-top:18px;margin-top:18px}
+label{display:block;font-size:13px;font-weight:800;margin:12px 0 6px}
+input,textarea,select{width:100%;border:1px solid #d9dee8;border-radius:10px;padding:11px;font:inherit}
+textarea{min-height:75px;resize:vertical}
+button{border:0;border-radius:10px;padding:12px 16px;font-weight:800;cursor:pointer}
+.primary{background:#4f46e5;color:white;width:100%;margin-top:18px}
+.secondary{background:#eef2ff;color:#4338ca}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.preview-wrap{background:#eef0f5;border-radius:15px;padding:25px;min-height:750px}
+.cv{background:#fff;min-height:700px;max-width:760px;margin:auto;padding:42px;box-shadow:0 5px 25px #00000012}
+.cv-header{border-bottom:3px solid #4f46e5;padding-bottom:18px;margin-bottom:20px}
+.cv-name{font-size:34px;font-weight:900;margin-bottom:5px}.cv-title{color:#4f46e5;font-weight:800}
+.contact{color:#667085;font-size:13px;margin-top:8px}.cv h3{font-size:14px;text-transform:uppercase;letter-spacing:1px;color:#4f46e5;border-bottom:1px solid #eee;padding-bottom:6px;margin-top:24px}
+.cv p{line-height:1.5;color:#374151}.cv ul{padding-left:20px;color:#374151}.cv li{margin:6px 0}
+.price{display:flex;gap:10px;align-items:center;margin-top:18px}.price strong{font-size:24px}.old{text-decoration:line-through;color:#999}
+.features{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;max-width:1100px;margin:20px auto 50px;padding:0 20px}.feature{background:white;padding:20px;border-radius:15px;border:1px solid #e8eaf0;text-align:center}.feature b{display:block;margin:8px}
+@media(max-width:850px){.container{grid-template-columns:1fr}.hero h1{font-size:36px}.features{grid-template-columns:1fr}.cv{padding:25px}}
+@media print{header,.hero,.features,.form-card,.preview-title{display:none!important}.container{display:block;margin:0;padding:0}.preview-wrap{padding:0;background:white}.cv{box-shadow:none;max-width:none}}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">CV<span>FLASH</span></div>
+  <a href="#creator">Créer mon CV</a>
+</header>
+
+<section class="hero">
+  <div class="badge">🚀 Simple • Rapide • Pensé pour les jeunes</div>
+  <h1>Ton CV. <span>En 5 minutes.</span></h1>
+  <p>Crée un CV moderne pour ton stage, ton job d'été ou ton premier emploi. Remplis les champs et regarde ton CV se construire en direct.</p>
+  <a href="#creator" style="display:inline-block;background:#4f46e5;color:#fff;padding:14px 22px;border-radius:12px;text-decoration:none;font-weight:800">Créer mon CV gratuitement →</a>
+</section>
+
+<div class="features">
+  <div class="feature">⚡<b>Ultra rapide</b>Un CV prêt en quelques minutes.</div>
+  <div class="feature">🎨<b>Design moderne</b>Un modèle propre et professionnel.</div>
+  <div class="feature">📄<b>Prêt à envoyer</b>Imprime ou sauvegarde ton CV en PDF.</div>
+</div>
+
+<div class="container" id="creator">
+  <div class="card form-card">
+    <h2>📝 Ton CV</h2>
+    <p style="color:#667085">Remplis les informations ci-dessous.</p>
+
+    <label>Prénom et nom</label>
+    <input id="name" value="Alex Martin">
+
+    <label>Titre / objectif</label>
+    <input id="title" value="Élève à la recherche d'un stage">
+
+    <div class="row">
+      <div><label>Ville</label><input id="city" value="Lyon"></div>
+      <div><label>Email</label><input id="email" value="alex@email.com"></div>
+    </div>
+
+    <label>À propos de moi</label>
+    <textarea id="about">Élève motivé, sérieux et curieux. J'aime apprendre de nouvelles choses et travailler en équipe.</textarea>
+
+    <div class="section">
+      <h3>🎓 Formation</h3>
+      <label>Établissement</label><input id="school" value="Lycée Exemple">
+      <label>Formation / classe</label><input id="education" value="Seconde générale — 2026">
+    </div>
+
+    <div class="section">
+      <h3>💼 Expérience</h3>
+      <label>Stage / expérience</label><input id="experience" value="Stage d'observation">
+      <label>Description</label><textarea id="expdesc">Découverte du fonctionnement d'une entreprise et participation aux tâches quotidiennes de l'équipe.</textarea>
+    </div>
+
+    <div class="section">
+      <h3>⭐ Compétences</h3>
+      <input id="skills" value="Travail en équipe, informatique, organisation, communication">
+    </div>
+
+    <div class="section">
+      <h3>🌍 Langues</h3>
+      <input id="languages" value="Français — courant | Anglais — niveau scolaire">
+    </div>
+
+    <label>Modèle</label>
+    <select id="theme">
+      <option value="purple">Modern</option>
+      <option value="dark">Minimal</option>
+    </select>
+
+    <button class="primary" onclick="openCheckout()">⭐ Passer en Premium — 5,99 €</button>
+    <button class="secondary" style="width:100%;margin-top:10px" onclick="window.print()">📄 Télécharger / imprimer gratuitement</button>
+    <div class="price"><strong>5,99 €</strong><span class="old">9,99 €</span><span>offre lancement</span></div>
+  </div>
+
+  <div>
+    <h2 class="preview-title">Aperçu en direct</h2>
+    <div class="preview-wrap">
+      <div class="cv" id="cv">
+        <div class="cv-header">
+          <div class="cv-name" id="pname">Alex Martin</div>
+          <div class="cv-title" id="ptitle">Élève à la recherche d'un stage</div>
+          <div class="contact"><span id="pcity">Lyon</span> · <span id="pemail">alex@email.com</span></div>
+        </div>
+        <h3>Profil</h3><p id="pabout"></p>
+        <h3>Formation</h3><p><b id="pschool"></b><br><span id="peducation"></span></p>
+        <h3>Expérience</h3><p><b id="pexperience"></b><br><span id="pexpdesc"></span></p>
+        <h3>Compétences</h3><p id="pskills"></p>
+        <h3>Langues</h3><p id="planguages"></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- DEMO CHECKOUT -->
+<div id="checkout" style="display:none;position:fixed;inset:0;background:#0008;z-index:100;align-items:center;justify-content:center;padding:20px">
+  <div style="background:white;width:min(520px,100%);border-radius:20px;padding:28px;box-shadow:0 25px 80px #0005">
+    <div style="display:flex;justify-content:space-between;align-items:center">
+      <div>
+        <div style="font-size:13px;font-weight:800;color:#4f46e5">CVFLASH CHECKOUT</div>
+        <h2 style="margin:5px 0">Finaliser ma commande</h2>
+      </div>
+      <button onclick="closeCheckout()" style="background:#f1f3f7;padding:8px 11px">✕</button>
+    </div>
+
+    <div style="background:#f5f7fb;border-radius:12px;padding:15px;margin:18px 0;display:flex;justify-content:space-between">
+      <span>CV Premium — offre lancement</span><strong>5,99 €</strong>
+    </div>
+
+    <label style="display:block;font-size:13px;font-weight:800;margin:12px 0 6px">Nom sur la carte</label>
+    <input id="cardname" placeholder="Alex Martin" style="width:100%;border:1px solid #d9dee8;border-radius:10px;padding:11px;font:inherit">
+
+    <label style="display:block;font-size:13px;font-weight:800;margin:12px 0 6px">Numéro de carte</label>
+    <input id="cardnumber" maxlength="19" placeholder="4242 4242 4242 4242" style="width:100%;border:1px solid #d9dee8;border-radius:10px;padding:11px;font:inherit">
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+      <div>
+        <label style="display:block;font-size:13px;font-weight:800;margin:12px 0 6px">Expiration</label>
+        <input placeholder="MM/AA" style="width:100%;border:1px solid #d9dee8;border-radius:10px;padding:11px;font:inherit">
+      </div>
+      <div>
+        <label style="display:block;font-size:13px;font-weight:800;margin:12px 0 6px">CVC</label>
+        <input maxlength="3" placeholder="123" style="width:100%;border:1px solid #d9dee8;border-radius:10px;padding:11px;font:inherit">
+      </div>
+    </div>
+
+    <div style="font-size:12px;color:#667085;margin-top:15px">🔒 Démonstration uniquement — aucun paiement réel n'est effectué.</div>
+    <button onclick="fakePayment()" style="width:100%;background:#4f46e5;color:white;border:0;border-radius:10px;padding:13px;margin-top:16px;font-weight:900;font-size:15px">Payer 5,99 € (démo)</button>
+
+    <div id="success" style="display:none;text-align:center;background:#ecfdf3;color:#087443;padding:18px;border-radius:12px;margin-top:15px">
+      <div style="font-size:28px">✓</div>
+      <strong>Paiement accepté — démo réussie !</strong>
+      <p style="margin:6px 0 0;font-size:13px">Ton CV Premium est maintenant disponible.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+function openCheckout(){document.getElementById("checkout").style.display="flex";document.getElementById("success").style.display="none";}
+function closeCheckout(){document.getElementById("checkout").style.display="none";}
+function fakePayment(){
+  const number=document.getElementById("cardnumber").value.replace(/\s/g,"");
+  if(number.length < 12){alert("Pour la démo, entre un numéro de carte fictif (ex : 4242 4242 4242 4242).");return;}
+  document.getElementById("success").style.display="block";
+}
+const ids=['name','title','city','email','about','school','education','experience','expdesc','skills','languages'];
+const map={name:'pname',title:'ptitle',city:'pcity',email:'pemail',about:'pabout',school:'pschool',education:'peducation',experience:'pexperience',expdesc:'pexpdesc',skills:'pskills',languages:'planguages'};
+function update(){
+ ids.forEach(id=>{
+   const el=document.getElementById(id), out=document.getElementById(map[id]);
+   out.textContent=el.value;
+ });
+}
+ids.forEach(id=>document.getElementById(id).addEventListener('input',update));
+document.getElementById('theme').addEventListener('change',e=>{
+ document.querySelector('.cv-header').style.borderColor=e.target.value==='dark'?'#111827':'#4f46e5';
+ document.querySelectorAll('.cv-title,.cv h3').forEach(x=>x.style.color=e.target.value==='dark'?'#111827':'#4f46e5');
+});
+update();
+</script>
+</body>
+</html>
