@@ -3,167 +3,301 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="CVFLASH — crée un CV clair et moderne en quelques minutes, pour un stage, un job d'été ou un premier emploi.">
+<meta name="theme-color" content="#4f46e5">
 <title>CVFLASH — Crée ton CV en 5 minutes</title>
 <style>
 *{box-sizing:border-box}
-body{margin:0;font-family:Inter,Arial,sans-serif;background:#f5f7fb;color:#172033}
+body{margin:0;font-family:Inter,Arial,sans-serif;background:#f5f7fb;color:#172033;line-height:1.45}
+:focus-visible{outline:3px solid #1d4ed8;outline-offset:2px}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.skip-link{position:absolute;left:10px;top:-60px;background:#111827;color:#fff;padding:12px 18px;border-radius:8px;z-index:1000;transition:top .15s;font-weight:700;text-decoration:none}
+.skip-link:focus{top:10px}
 header{background:#fff;border-bottom:1px solid #e7eaf0;padding:16px 5%;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:10}
 .logo{font-size:24px;font-weight:900;color:#4f46e5}.logo span{color:#111827}
-header a{background:#4f46e5;color:white;padding:10px 16px;border-radius:10px;text-decoration:none;font-weight:700}
+header a.cta{background:#4f46e5;color:white;padding:10px 16px;border-radius:10px;text-decoration:none;font-weight:700;display:inline-block}
+header a.cta:hover{background:#4338ca}
 .hero{padding:65px 6% 45px;text-align:center;background:linear-gradient(135deg,#eef2ff,#fff)}
 .hero h1{font-size:46px;margin:0 0 15px;letter-spacing:-2px}
-.hero h1 span{color:#4f46e5}.hero p{font-size:18px;color:#667085;max-width:650px;margin:0 auto 25px}
+.hero h1 span{color:#4f46e5}.hero p{font-size:18px;color:#53607a;max-width:650px;margin:0 auto 25px}
 .badge{display:inline-block;background:#e0e7ff;color:#4338ca;padding:7px 12px;border-radius:30px;font-weight:800;font-size:13px;margin-bottom:15px}
-.container{max-width:1200px;margin:35px auto;padding:0 20px;display:grid;grid-template-columns:430px 1fr;gap:25px}
+.heroBtn{display:inline-block;background:#4f46e5;color:#fff;padding:14px 22px;border-radius:12px;text-decoration:none;font-weight:800}
+.heroBtn:hover{background:#4338ca}
+.container{max-width:1200px;margin:35px auto;padding:0 20px;display:grid;grid-template-columns:440px 1fr;gap:25px;align-items:start}
 .card{background:white;border:1px solid #e5e7eb;border-radius:18px;padding:22px;box-shadow:0 8px 30px #1720330b}
-.card h2{margin-top:0}.section{border-top:1px solid #eee;padding-top:18px;margin-top:18px}
+.card h2{margin-top:0}
+.section{border-top:1px solid #eee;padding-top:18px;margin-top:18px}
+.section legend{font-weight:900;font-size:15px;padding:0;margin-bottom:4px}
+fieldset{border:0;padding:0;margin:0}
 label{display:block;font-size:13px;font-weight:800;margin:12px 0 6px}
-input,textarea,select{width:100%;border:1px solid #d9dee8;border-radius:10px;padding:11px;font:inherit}
+.hint{font-size:12px;color:#667085;font-weight:500;margin:-3px 0 6px}
+input,textarea,select{width:100%;border:1px solid #d9dee8;border-radius:10px;padding:11px;font:inherit;background:#fff;color:#172033}
+input:invalid:not(:placeholder-shown){border-color:#dc2626}
 textarea{min-height:75px;resize:vertical}
-button{border:0;border-radius:10px;padding:12px 16px;font-weight:800;cursor:pointer}
+button{border:0;border-radius:10px;padding:12px 16px;font-weight:800;cursor:pointer;font:inherit}
 .primary{background:#4f46e5;color:white;width:100%;margin-top:18px}
-.secondary{background:#eef2ff;color:#4338ca}
+.primary:hover{background:#4338ca}
+.secondary{background:#eef2ff;color:#4338ca;width:100%;margin-top:10px}
+.secondary:hover{background:#e0e7ff}
+.danger{background:#fef2f2;color:#991b1b;width:100%;margin-top:10px}
+.danger:hover{background:#fee2e2}
 .row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.req{color:#b91c1c}
+.entry-block{border:1px solid #e5e7eb;border-radius:12px;padding:14px;margin-top:12px;background:#fafbff;position:relative}
+.entry-block .entry-top{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.entry-block .entry-top strong{font-size:13px;color:#4338ca}
+.remove-entry{background:#fee2e2;color:#991b1b;padding:6px 10px;font-size:12px;width:auto;margin:0}
+.remove-entry:hover{background:#fecaca}
+.add-entry{background:#eef2ff;color:#4338ca;width:100%;margin-top:10px;border:1.5px dashed #c7d2fe}
+.add-entry:hover{background:#e0e7ff}
+.photo-row{display:flex;gap:12px;align-items:center;margin-top:8px}
+.photo-preview{width:64px;height:64px;border-radius:50%;object-fit:cover;background:#e5e7eb;flex-shrink:0}
+.theme-picker{display:flex;gap:10px;flex-wrap:wrap}
+.swatch{width:auto;flex:1;min-width:90px;display:flex;flex-direction:column;align-items:center;gap:6px;background:#fff;border:2px solid #e5e7eb;padding:8px 6px;font-weight:700;font-size:12px;color:#374151}
+.swatch .dot{width:22px;height:22px;border-radius:50%;background:var(--sw)}
+.swatch[aria-pressed="true"]{border-color:var(--sw);background:#f5f6ff}
+.save-status{min-height:18px;font-size:12px;color:#087443;font-weight:700;margin-top:10px;text-align:center}
+.checkbox-row{display:flex;align-items:center;gap:8px;margin:12px 0 0}
+.checkbox-row input{width:auto}
+.checkbox-row label{margin:0;font-weight:700;font-size:14px}
 .preview-wrap{background:#eef0f5;border-radius:15px;padding:25px;min-height:750px}
-.cv{background:#fff;min-height:700px;max-width:760px;margin:auto;padding:42px;box-shadow:0 5px 25px #00000012}
-.cv-header{border-bottom:3px solid #4f46e5;padding-bottom:18px;margin-bottom:20px}
-.cv-name{font-size:34px;font-weight:900;margin-bottom:5px}.cv-title{color:#4f46e5;font-weight:800}
-.contact{color:#667085;font-size:13px;margin-top:8px}.cv h3{font-size:14px;text-transform:uppercase;letter-spacing:1px;color:#4f46e5;border-bottom:1px solid #eee;padding-bottom:6px;margin-top:24px}
-.cv p{line-height:1.5;color:#374151}.cv ul{padding-left:20px;color:#374151}.cv li{margin:6px 0}
-.price{display:flex;gap:10px;align-items:center;margin-top:18px}.price strong{font-size:24px}.old{text-decoration:line-through;color:#999}
-.features{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;max-width:1100px;margin:20px auto 50px;padding:0 20px}.feature{background:white;padding:20px;border-radius:15px;border:1px solid #e8eaf0;text-align:center}.feature b{display:block;margin:8px}
+.preview-title{margin-top:0}
+.cv{--accent:#4f46e5;--text-color:#374151;background:#fff;min-height:700px;max-width:760px;margin:auto;padding:42px;box-shadow:0 5px 25px #00000012}
+.cv-header{border-bottom:3px solid var(--accent);padding-bottom:18px;margin-bottom:20px;display:flex;gap:18px;align-items:center;flex-wrap:wrap}
+.cv-photo{width:84px;height:84px;border-radius:50%;object-fit:cover;flex-shrink:0;border:3px solid var(--accent)}
+.cv-headtext{flex:1;min-width:200px}
+.cv-name{font-size:34px;font-weight:900;margin:0 0 4px}.cv-title{color:var(--accent);font-weight:800;margin:0}
+.contact{color:var(--text-color);font-size:13px;margin-top:8px}
+.contact a{color:var(--accent);text-decoration:none;font-weight:700}
+.contact a:hover{text-decoration:underline}
+.cv h3{font-size:14px;text-transform:uppercase;letter-spacing:1px;color:var(--accent);border-bottom:1px solid #eee;padding-bottom:6px;margin-top:24px}
+.cv p{line-height:1.5;color:var(--text-color);margin:8px 0}
+.cv ul{padding-left:20px;color:var(--text-color)}.cv li{margin:6px 0}
+.cv-entry{margin:10px 0}
+.cv-entry-head{display:flex;justify-content:space-between;gap:10px;font-weight:800;color:var(--text-color);flex-wrap:wrap}
+.cv-entry-period{font-weight:700;color:#53607a;font-size:13px;white-space:nowrap}
+.cv-entry-sub{font-weight:700;color:var(--accent);font-size:13px;margin-top:1px}
+.cv-empty{color:#98a2b3;font-style:italic}
+.price{display:flex;gap:10px;align-items:center;margin-top:18px;flex-wrap:wrap}.price strong{font-size:24px}.old{text-decoration:line-through;color:#999}
+.features{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;max-width:1100px;margin:20px auto 50px;padding:0 20px}
+.feature{background:white;padding:20px;border-radius:15px;border:1px solid #e8eaf0;text-align:center}
+.feature b{display:block;margin:8px}
+.feature .ic{font-size:26px}
+footer{background:#11182a;color:#c7d0e0;padding:30px 6%;font-size:13px;text-align:center}
+footer a{color:#c7d2fe}
+.modal-backdrop{position:fixed;inset:0;background:#0008;z-index:100;align-items:center;justify-content:center;padding:20px}
+.modal{background:white;width:min(520px,100%);border-radius:20px;padding:28px;box-shadow:0 25px 80px #0005}
+.modal-head{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.modal-close{background:#f1f3f7;padding:8px 11px;width:auto}
+.modal-close:hover{background:#e5e7eb}
+.inline-err{background:#fef2f2;color:#991b1b;border:1px solid #fecaca;border-radius:10px;padding:10px 12px;font-size:13px;font-weight:700;margin-top:10px}
 @media(max-width:850px){.container{grid-template-columns:1fr}.hero h1{font-size:36px}.features{grid-template-columns:1fr}.cv{padding:25px}}
-@media print{header,.hero,.features,.form-card,.preview-title{display:none!important}.container{display:block;margin:0;padding:0}.preview-wrap{padding:0;background:white}.cv{box-shadow:none;max-width:none}}
+@media print{header,.hero,.features,.form-card,.preview-title,footer,.skip-link{display:none!important}.container{display:block;margin:0;padding:0}.preview-wrap{padding:0;background:white}.cv{box-shadow:none;max-width:none}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 </head>
 <body>
+<a class="skip-link" href="#main">Aller directement au créateur de CV</a>
 <header>
-  <div class="logo">CV<span>FLASH</span></div>
-  <a href="#creator">Créer mon CV</a>
+  <a class="logo" href="#top" style="text-decoration:none">CV<span>FLASH</span></a>
+  <a class="cta" href="#creator">Créer mon CV</a>
 </header>
 
-<section class="hero">
-  <div class="badge">🚀 Simple • Rapide • Pensé pour les jeunes</div>
-  <h1>Ton CV. <span>En 5 minutes.</span></h1>
-  <p>Crée un CV moderne pour ton stage, ton job d'été ou ton premier emploi. Remplis les champs et regarde ton CV se construire en direct.</p>
-  <a href="#creator" style="display:inline-block;background:#4f46e5;color:#fff;padding:14px 22px;border-radius:12px;text-decoration:none;font-weight:800">Créer mon CV gratuitement →</a>
+<main id="main">
+<section class="hero" aria-labelledby="hero-title" id="top">
+  <p class="badge">🚀 Simple • Rapide • Pensé pour les jeunes</p>
+  <h1 id="hero-title">Ton CV. <span>En 5 minutes.</span></h1>
+  <p>Crée un CV clair et accessible pour ton stage, ton job d'été ou ton premier emploi. Remplis les champs et regarde ton CV se construire en direct.</p>
+  <a href="#creator" class="heroBtn">Créer mon CV gratuitement →</a>
 </section>
 
-<div class="features">
-  <div class="feature">⚡<b>Ultra rapide</b>Un CV prêt en quelques minutes.</div>
-  <div class="feature">🎨<b>Design moderne</b>Un modèle propre et professionnel.</div>
-  <div class="feature">📄<b>Prêt à envoyer</b>Imprime ou sauvegarde ton CV en PDF.</div>
-</div>
+<section class="features" aria-label="Pourquoi utiliser CVFLASH">
+  <div class="feature"><span class="ic" aria-hidden="true">⚡</span><b>Ultra rapide</b>Un CV prêt en quelques minutes.</div>
+  <div class="feature"><span class="ic" aria-hidden="true">🎨</span><b>Design moderne</b>Quatre styles de couleurs au choix.</div>
+  <div class="feature"><span class="ic" aria-hidden="true">📄</span><b>Prêt à envoyer</b>Imprime ou enregistre ton CV en PDF.</div>
+</section>
 
-<div class="container" id="creator">
-  <div class="card form-card">
+<section class="container" id="creator" aria-label="Créateur de CV">
+  <form class="card form-card" id="cvForm" novalidate>
     <h2>📝 Ton CV</h2>
-    <p style="color:#667085">Remplis les informations ci-dessous.</p>
+    <p style="color:#53607a;margin-top:0">Remplis les informations ci-dessous. Tout est enregistré automatiquement sur cet appareil.</p>
 
-    <label>Prénom et nom</label>
-    <input id="name" value="Alex Martin">
+    <label for="name">Prénom et nom <span class="req" aria-hidden="true">*</span><span class="sr-only">(obligatoire)</span></label>
+    <input id="name" value="Alex Martin" required autocomplete="name">
 
-    <label>Titre / objectif</label>
+    <label for="title">Titre / objectif</label>
     <input id="title" value="Élève à la recherche d'un stage">
 
     <div class="row">
-      <div><label>Ville</label><input id="city" value="Lyon"></div>
-      <div><label>Email</label><input id="email" value="alex@email.com"></div>
+      <div><label for="city">Ville</label><input id="city" value="Lyon" autocomplete="address-level2"></div>
+      <div><label for="email">Email</label><input id="email" type="email" value="alex@email.com" autocomplete="email"></div>
+    </div>
+    <div class="row">
+      <div><label for="phone">Téléphone</label><input id="phone" type="tel" placeholder="06 12 34 56 78" autocomplete="tel"></div>
+      <div><label for="linkedin">LinkedIn / portfolio</label><input id="linkedin" type="url" placeholder="https://..."></div>
     </div>
 
-    <label>À propos de moi</label>
+    <div class="photo-row">
+      <img id="photoPreview" class="photo-preview" src="" alt="" hidden>
+      <div style="flex:1">
+        <label for="photo">Photo (optionnelle)</label>
+        <input type="file" id="photo" accept="image/png,image/jpeg">
+      </div>
+    </div>
+    <div id="photoAltWrap" hidden>
+      <label for="photoAlt">Description courte de la photo <span class="hint">(pour les lecteurs d'écran)</span></label>
+      <input id="photoAlt" placeholder="Ex : portrait d'Alex Martin souriant">
+      <button type="button" class="danger" id="removePhoto" style="margin-top:8px">Supprimer la photo</button>
+    </div>
+
+    <label for="about">À propos de moi</label>
     <textarea id="about">Élève motivé, sérieux et curieux. J'aime apprendre de nouvelles choses et travailler en équipe.</textarea>
 
     <div class="section">
-      <h3>🎓 Formation</h3>
-      <label>Établissement</label><input id="school" value="Lycée Exemple">
-      <label>Formation / classe</label><input id="education" value="Seconde générale — 2026">
+      <fieldset>
+        <legend>🎓 Formation</legend>
+        <div id="educationList"></div>
+        <button type="button" class="add-entry" id="addEducation">+ Ajouter une formation</button>
+      </fieldset>
     </div>
 
     <div class="section">
-      <h3>💼 Expérience</h3>
-      <label>Stage / expérience</label><input id="experience" value="Stage d'observation">
-      <label>Description</label><textarea id="expdesc">Découverte du fonctionnement d'une entreprise et participation aux tâches quotidiennes de l'équipe.</textarea>
+      <fieldset>
+        <legend>💼 Expérience</legend>
+        <div id="experienceList"></div>
+        <button type="button" class="add-entry" id="addExperience">+ Ajouter une expérience</button>
+      </fieldset>
     </div>
 
     <div class="section">
-      <h3>⭐ Compétences</h3>
+      <h3 style="font-size:15px;margin:0 0 4px">⭐ Compétences</h3>
+      <label for="skills" class="hint" style="font-weight:500;margin-top:0">Sépare-les par une virgule</label>
       <input id="skills" value="Travail en équipe, informatique, organisation, communication">
     </div>
 
     <div class="section">
-      <h3>🌍 Langues</h3>
+      <h3 style="font-size:15px;margin:0 0 4px">🌍 Langues</h3>
       <input id="languages" value="Français — courant | Anglais — niveau scolaire">
     </div>
 
-    <label>Modèle</label>
-    <select id="theme">
-      <option value="purple">Modern</option>
-      <option value="dark">Minimal</option>
-    </select>
+    <div class="section">
+      <h3 style="font-size:15px;margin:0 0 4px">🙂 Centres d'intérêt <span class="hint" style="font-weight:500">(optionnel)</span></h3>
+      <input id="hobbies" placeholder="Ex : football, lecture, bénévolat">
+    </div>
 
-    <button class="primary" onclick="openCheckout()">⭐ Passer en Premium — 5,99 €</button>
-    <button class="secondary" style="width:100%;margin-top:10px" onclick="window.print()">📄 Télécharger / imprimer gratuitement</button>
-    <div class="price"><strong>5,99 €</strong><span class="old">9,99 €</span><span>offre lancement</span></div>
-  </div>
+    <div class="section">
+      <h3 style="font-size:15px;margin:0 0 4px">ℹ️ Informations complémentaires <span class="hint" style="font-weight:500">(optionnel)</span></h3>
+      <div class="checkbox-row">
+        <input type="checkbox" id="license">
+        <label for="license">J'ai le permis B</label>
+      </div>
+      <label for="references" style="margin-top:12px">Références</label>
+      <textarea id="references" placeholder="Disponibles sur demande, ou précise un contact"></textarea>
+    </div>
 
-  <div>
-    <h2 class="preview-title">Aperçu en direct</h2>
-    <div class="preview-wrap">
-      <div class="cv" id="cv">
-        <div class="cv-header">
-          <div class="cv-name" id="pname">Alex Martin</div>
-          <div class="cv-title" id="ptitle">Élève à la recherche d'un stage</div>
-          <div class="contact"><span id="pcity">Lyon</span> · <span id="pemail">alex@email.com</span></div>
+    <div class="section">
+      <h3 style="font-size:15px;margin:0 0 10px">🎨 Style du CV</h3>
+      <div class="theme-picker" role="group" aria-label="Choisis une couleur pour ton CV" id="themePicker">
+        <button type="button" class="swatch" data-theme="#4f46e5" aria-pressed="true" style="--sw:#4f46e5">
+          <span class="dot" aria-hidden="true"></span>Violet
+        </button>
+        <button type="button" class="swatch" data-theme="#111827" aria-pressed="false" style="--sw:#111827">
+          <span class="dot" aria-hidden="true"></span>Minimal
+        </button>
+        <button type="button" class="swatch" data-theme="#047857" aria-pressed="false" style="--sw:#047857">
+          <span class="dot" aria-hidden="true"></span>Vert
+        </button>
+        <button type="button" class="swatch" data-theme="#9f1239" aria-pressed="false" style="--sw:#9f1239">
+          <span class="dot" aria-hidden="true"></span>Bordeaux
+        </button>
+      </div>
+      <div style="margin-top:12px">
+        <label for="textColor">Couleur du texte</label>
+        <div style="display:flex;align-items:center;gap:10px">
+          <input id="textColor" type="color" value="#374151" aria-label="Choisis la couleur du texte de ton CV" style="width:54px;height:42px;padding:3px;cursor:pointer">
+          <span class="hint" style="margin:0">Change la couleur des textes principaux du CV.</span>
         </div>
-        <h3>Profil</h3><p id="pabout"></p>
-        <h3>Formation</h3><p><b id="pschool"></b><br><span id="peducation"></span></p>
-        <h3>Expérience</h3><p><b id="pexperience"></b><br><span id="pexpdesc"></span></p>
-        <h3>Compétences</h3><p id="pskills"></p>
-        <h3>Langues</h3><p id="planguages"></p>
       </div>
     </div>
-  </div>
-</div>
 
+    <div id="saveStatus" class="save-status" role="status" aria-live="polite"></div>
+
+    <button type="button" class="primary" id="btnPremium">⭐ Passer en Premium — 5,99 €</button>
+    <button type="button" class="secondary" id="btnPrint">📄 Télécharger / imprimer gratuitement</button>
+    <button type="button" class="danger" id="btnReset">🗑 Réinitialiser le formulaire</button>
+    <p class="hint">Astuce : dans la fenêtre d'impression, choisis « Enregistrer en PDF » comme imprimante.</p>
+    <div class="price"><strong>5,99 €</strong><span class="old">9,99 €</span><span>offre de lancement</span></div>
+  </form>
+
+  <div>
+    <h2 class="preview-title" id="preview-heading">Aperçu en direct</h2>
+    <div class="preview-wrap" role="region" aria-labelledby="preview-heading">
+      <article class="cv" id="cv">
+        <header class="cv-header">
+          <img id="pphoto" class="cv-photo" src="" alt="" hidden>
+          <div class="cv-headtext">
+            <h2 class="cv-name" id="pname">Alex Martin</h2>
+            <p class="cv-title" id="ptitle">Élève à la recherche d'un stage</p>
+            <p class="contact" id="pcontact"></p>
+          </div>
+        </header>
+
+        <section aria-labelledby="h-profil"><h3 id="h-profil">Profil</h3><p id="pabout"></p></section>
+        <section aria-labelledby="h-formation"><h3 id="h-formation">Formation</h3><div id="peducationList"></div></section>
+        <section aria-labelledby="h-exp"><h3 id="h-exp">Expérience</h3><div id="pexperienceList"></div></section>
+        <section aria-labelledby="h-skills"><h3 id="h-skills">Compétences</h3><p id="pskills"></p></section>
+        <section aria-labelledby="h-lang"><h3 id="h-lang">Langues</h3><p id="planguages"></p></section>
+        <section aria-labelledby="h-hobbies" id="hobbiesSection" hidden><h3 id="h-hobbies">Centres d'intérêt</h3><p id="phobbies"></p></section>
+        <section aria-labelledby="h-extra" id="extraSection" hidden><h3 id="h-extra">Informations complémentaires</h3><p id="pextra"></p></section>
+      </article>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <p>CVFLASH — outil de démonstration créé avec Claude. Tes données restent dans ton navigateur (aucun serveur).</p>
+  <p>Accessibilité : navigation au clavier, étiquettes de formulaire, contrastes vérifiés. Un souci d'accessibilité ? <a href="mailto:contact@example.com">Écris-nous</a>.</p>
+</footer>
 
 <!-- DEMO CHECKOUT -->
-<div id="checkout" style="display:none;position:fixed;inset:0;background:#0008;z-index:100;align-items:center;justify-content:center;padding:20px">
-  <div style="background:white;width:min(520px,100%);border-radius:20px;padding:28px;box-shadow:0 25px 80px #0005">
-    <div style="display:flex;justify-content:space-between;align-items:center">
+<div id="checkout" class="modal-backdrop" style="display:none" role="dialog" aria-modal="true" aria-labelledby="checkoutTitle">
+  <div class="modal">
+    <div class="modal-head">
       <div>
-        <div style="font-size:13px;font-weight:800;color:#4f46e5">CVFLASH CHECKOUT</div>
-        <h2 style="margin:5px 0">Finaliser ma commande</h2>
+        <div style="font-size:13px;font-weight:800;color:#4f46e5">CVFLASH CHECKOUT — DÉMONSTRATION</div>
+        <h2 id="checkoutTitle" style="margin:5px 0">Finaliser ma commande</h2>
       </div>
-      <button onclick="closeCheckout()" style="background:#f1f3f7;padding:8px 11px">✕</button>
+      <button class="modal-close" id="closeCheckout" aria-label="Fermer la fenêtre de paiement">✕</button>
     </div>
 
     <div style="background:#f5f7fb;border-radius:12px;padding:15px;margin:18px 0;display:flex;justify-content:space-between">
       <span>CV Premium — offre lancement</span><strong>5,99 €</strong>
     </div>
 
-    <label style="display:block;font-size:13px;font-weight:800;margin:12px 0 6px">Nom sur la carte</label>
-    <input id="cardname" placeholder="Alex Martin" style="width:100%;border:1px solid #d9dee8;border-radius:10px;padding:11px;font:inherit">
+    <label for="cardname">Nom sur la carte</label>
+    <input id="cardname" placeholder="Alex Martin" autocomplete="cc-name">
 
-    <label style="display:block;font-size:13px;font-weight:800;margin:12px 0 6px">Numéro de carte</label>
-    <input id="cardnumber" maxlength="19" placeholder="4242 4242 4242 4242" style="width:100%;border:1px solid #d9dee8;border-radius:10px;padding:11px;font:inherit">
+    <label for="cardnumber">Numéro de carte fictif <span class="hint" style="font-weight:500">(ex : 4242 4242 4242 4242)</span></label>
+    <input id="cardnumber" maxlength="19" placeholder="4242 4242 4242 4242" inputmode="numeric">
 
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+    <div class="row">
       <div>
-        <label style="display:block;font-size:13px;font-weight:800;margin:12px 0 6px">Expiration</label>
-        <input placeholder="MM/AA" style="width:100%;border:1px solid #d9dee8;border-radius:10px;padding:11px;font:inherit">
+        <label for="cardexp">Expiration</label>
+        <input id="cardexp" placeholder="MM/AA" autocomplete="cc-exp">
       </div>
       <div>
-        <label style="display:block;font-size:13px;font-weight:800;margin:12px 0 6px">CVC</label>
-        <input maxlength="3" placeholder="123" style="width:100%;border:1px solid #d9dee8;border-radius:10px;padding:11px;font:inherit">
+        <label for="cardcvc">CVC</label>
+        <input id="cardcvc" maxlength="3" placeholder="123" inputmode="numeric" autocomplete="cc-csc">
       </div>
     </div>
 
-    <div style="font-size:12px;color:#667085;margin-top:15px">🔒 Démonstration uniquement — aucun paiement réel n'est effectué.</div>
-    <button onclick="fakePayment()" style="width:100%;background:#4f46e5;color:white;border:0;border-radius:10px;padding:13px;margin-top:16px;font-weight:900;font-size:15px">Payer 5,99 € (démo)</button>
+    <p id="checkoutError" class="inline-err" role="alert" hidden></p>
+    <p style="font-size:12px;color:#53607a;margin-top:15px">🔒 Démonstration uniquement — aucun paiement réel n'est effectué et aucune donnée n'est envoyée à un serveur.</p>
+    <button class="primary" id="btnPay" style="margin-top:6px">Payer 5,99 € (démo)</button>
 
-    <div id="success" style="display:none;text-align:center;background:#ecfdf3;color:#087443;padding:18px;border-radius:12px;margin-top:15px">
-      <div style="font-size:28px">✓</div>
+    <div id="success" style="display:none;text-align:center;background:#ecfdf3;color:#087443;padding:18px;border-radius:12px;margin-top:15px" role="status">
+      <div style="font-size:28px" aria-hidden="true">✓</div>
       <strong>Paiement accepté — démo réussie !</strong>
       <p style="margin:6px 0 0;font-size:13px">Ton CV Premium est maintenant disponible.</p>
     </div>
@@ -171,27 +305,309 @@ button{border:0;border-radius:10px;padding:12px 16px;font-weight:800;cursor:poin
 </div>
 
 <script>
-function openCheckout(){document.getElementById("checkout").style.display="flex";document.getElementById("success").style.display="none";}
-function closeCheckout(){document.getElementById("checkout").style.display="none";}
-function fakePayment(){
-  const number=document.getElementById("cardnumber").value.replace(/\s/g,"");
-  if(number.length < 12){alert("Pour la démo, entre un numéro de carte fictif (ex : 4242 4242 4242 4242).");return;}
-  document.getElementById("success").style.display="block";
+(function(){
+"use strict";
+const $=id=>document.getElementById(id);
+const STORAGE_KEY='cvflash_data_v2';
+let entryCounter=0;
+
+/* ---------------- Entries (formation / expérience) ---------------- */
+function makeEducationBlock(data){
+ data=data||{};
+ const id=++entryCounter;
+ const wrap=document.createElement('fieldset');
+ wrap.className='entry-block';wrap.dataset.kind='education';
+ wrap.innerHTML=`
+  <legend class="sr-only">Formation</legend>
+  <div class="entry-top"><strong>Formation</strong>
+   <button type="button" class="remove-entry" aria-label="Supprimer cette formation">✕ Supprimer</button>
+  </div>
+  <label for="edu-school-${id}">Établissement</label>
+  <input id="edu-school-${id}" class="f-school" value="${esc(data.school||'')}">
+  <label for="edu-degree-${id}">Formation / classe</label>
+  <input id="edu-degree-${id}" class="f-degree" value="${esc(data.degree||'')}">
+  <label for="edu-period-${id}">Période <span class="hint" style="font-weight:500">(optionnel)</span></label>
+  <input id="edu-period-${id}" class="f-period" placeholder="2025 - 2026" value="${esc(data.period||'')}">
+ `;
+ wrap.querySelector('.remove-entry').addEventListener('click',()=>{wrap.remove();scheduleSave();renderPreview()});
+ wrap.querySelectorAll('input').forEach(i=>i.addEventListener('input',()=>{scheduleSave();renderPreview()}));
+ return wrap;
 }
-const ids=['name','title','city','email','about','school','education','experience','expdesc','skills','languages'];
-const map={name:'pname',title:'ptitle',city:'pcity',email:'pemail',about:'pabout',school:'pschool',education:'peducation',experience:'pexperience',expdesc:'pexpdesc',skills:'pskills',languages:'planguages'};
-function update(){
- ids.forEach(id=>{
-   const el=document.getElementById(id), out=document.getElementById(map[id]);
-   out.textContent=el.value;
- });
+function makeExperienceBlock(data){
+ data=data||{};
+ const id=++entryCounter;
+ const wrap=document.createElement('fieldset');
+ wrap.className='entry-block';wrap.dataset.kind='experience';
+ wrap.innerHTML=`
+  <legend class="sr-only">Expérience</legend>
+  <div class="entry-top"><strong>Expérience</strong>
+   <button type="button" class="remove-entry" aria-label="Supprimer cette expérience">✕ Supprimer</button>
+  </div>
+  <label for="exp-role-${id}">Poste / stage</label>
+  <input id="exp-role-${id}" class="f-role" value="${esc(data.role||'')}">
+  <label for="exp-place-${id}">Entreprise / lieu</label>
+  <input id="exp-place-${id}" class="f-place" value="${esc(data.place||'')}">
+  <label for="exp-period-${id}">Période <span class="hint" style="font-weight:500">(optionnel)</span></label>
+  <input id="exp-period-${id}" class="f-period" placeholder="Été 2026" value="${esc(data.period||'')}">
+  <label for="exp-desc-${id}">Description</label>
+  <textarea id="exp-desc-${id}" class="f-desc">${esc(data.desc||'')}</textarea>
+ `;
+ wrap.querySelector('.remove-entry').addEventListener('click',()=>{wrap.remove();scheduleSave();renderPreview()});
+ wrap.querySelectorAll('input,textarea').forEach(i=>i.addEventListener('input',()=>{scheduleSave();renderPreview()}));
+ return wrap;
 }
-ids.forEach(id=>document.getElementById(id).addEventListener('input',update));
-document.getElementById('theme').addEventListener('change',e=>{
- document.querySelector('.cv-header').style.borderColor=e.target.value==='dark'?'#111827':'#4f46e5';
- document.querySelectorAll('.cv-title,.cv h3').forEach(x=>x.style.color=e.target.value==='dark'?'#111827':'#4f46e5');
+$('addEducation').addEventListener('click',()=>{
+ $('educationList').appendChild(makeEducationBlock());scheduleSave();renderPreview();
+ $('educationList').lastElementChild.querySelector('input').focus();
 });
-update();
+$('addExperience').addEventListener('click',()=>{
+ $('experienceList').appendChild(makeExperienceBlock());scheduleSave();renderPreview();
+ $('experienceList').lastElementChild.querySelector('input').focus();
+});
+
+/* ---------------- Helpers ---------------- */
+function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
+function val(id){return $(id)?$(id).value.trim():''}
+
+/* ---------------- Preview rendering ---------------- */
+function renderPreview(){
+ $('pname').textContent=val('name')||'Ton nom';
+ $('ptitle').textContent=val('title');
+ $('ptitle').hidden=!val('title');
+
+ const contactParts=[];
+ if(val('city'))contactParts.push(esc(val('city')));
+ if(val('email'))contactParts.push(`<a href="mailto:${esc(val('email'))}">${esc(val('email'))}</a>`);
+ if(val('phone'))contactParts.push(`<a href="tel:${esc(val('phone').replace(/\s/g,''))}">${esc(val('phone'))}</a>`);
+ if(val('linkedin'))contactParts.push(`<a href="${esc(val('linkedin'))}" target="_blank" rel="noopener noreferrer">${esc(val('linkedin').replace(/^https?:\/\//,''))}</a>`);
+ $('pcontact').innerHTML=contactParts.join(' · ');
+
+ $('pabout').textContent=val('about');
+
+ // education list
+ const eduBlocks=[...document.querySelectorAll('#educationList .entry-block')];
+ const eduHtml=eduBlocks.map(b=>{
+  const school=b.querySelector('.f-school').value.trim();
+  const degree=b.querySelector('.f-degree').value.trim();
+  const period=b.querySelector('.f-period').value.trim();
+  if(!school&&!degree)return '';
+  return `<div class="cv-entry"><div class="cv-entry-head"><span>${esc(degree||school)}</span>${period?`<span class="cv-entry-period">${esc(period)}</span>`:''}</div>${degree&&school?`<div class="cv-entry-sub">${esc(school)}</div>`:''}</div>`;
+ }).filter(Boolean).join('');
+ $('peducationList').innerHTML=eduHtml||'<p class="cv-empty">Ajoute ta formation dans le formulaire.</p>';
+
+ // experience list
+ const expBlocks=[...document.querySelectorAll('#experienceList .entry-block')];
+ const expHtml=expBlocks.map(b=>{
+  const role=b.querySelector('.f-role').value.trim();
+  const place=b.querySelector('.f-place').value.trim();
+  const period=b.querySelector('.f-period').value.trim();
+  const desc=b.querySelector('.f-desc').value.trim();
+  if(!role&&!place&&!desc)return '';
+  return `<div class="cv-entry"><div class="cv-entry-head"><span>${esc(role)}</span>${period?`<span class="cv-entry-period">${esc(period)}</span>`:''}</div>${place?`<div class="cv-entry-sub">${esc(place)}</div>`:''}${desc?`<p>${esc(desc)}</p>`:''}</div>`;
+ }).filter(Boolean).join('');
+ $('pexperienceList').innerHTML=expHtml||'<p class="cv-empty">Ajoute une expérience dans le formulaire.</p>';
+
+ $('pskills').textContent=val('skills');
+ $('planguages').textContent=val('languages');
+
+ const hobbies=val('hobbies');
+ $('hobbiesSection').hidden=!hobbies;
+ $('phobbies').textContent=hobbies;
+
+ const extra=[];
+ if($('license').checked)extra.push('Permis B');
+ if(val('references'))extra.push('Références : '+val('references'));
+ $('extraSection').hidden=extra.length===0;
+ $('pextra').textContent=extra.join(' · ');
+}
+
+/* ---------------- Theme ---------------- */
+function setTheme(color,save){
+ $('cv').style.setProperty('--accent',color);
+ document.querySelectorAll('#themePicker .swatch').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.theme===color)));
+ if(save!==false)scheduleSave();
+}
+document.querySelectorAll('#themePicker .swatch').forEach(btn=>{
+ btn.addEventListener('click',()=>setTheme(btn.dataset.theme));
+});
+function setTextColor(color,save){
+ $('cv').style.setProperty('--text-color',color);
+ $('textColor').value=color;
+ if(save!==false)scheduleSave();
+}
+$('textColor').addEventListener('input',e=>setTextColor(e.target.value));
+
+/* ---------------- Photo ---------------- */
+let photoDataUrl='';
+$('photo').addEventListener('change',e=>{
+ const file=e.target.files&&e.target.files[0];
+ if(!file)return;
+ if(file.size>1500000){
+  photoError('Cette image est trop grande (max ~1,5 Mo). Choisis une photo plus légère.');
+  e.target.value='';return;
+ }
+ const reader=new FileReader();
+ reader.onload=ev=>{
+  photoDataUrl=ev.target.result;
+  $('photoPreview').src=photoDataUrl;$('photoPreview').hidden=false;
+  $('pphoto').src=photoDataUrl;$('pphoto').hidden=false;
+  $('photoAltWrap').hidden=false;
+  scheduleSave();
+ };
+ reader.readAsDataURL(file);
+});
+function photoError(msg){
+ let el=$('photoErr');
+ if(!el){el=document.createElement('p');el.id='photoErr';el.className='inline-err';el.setAttribute('role','alert');$('photo').insertAdjacentElement('afterend',el)}
+ el.textContent=msg;
+}
+$('photoAlt').addEventListener('input',()=>{$('pphoto').alt=val('photoAlt');scheduleSave()});
+$('removePhoto').addEventListener('click',()=>{
+ photoDataUrl='';
+ $('photo').value='';
+ $('photoPreview').hidden=true;$('photoPreview').src='';
+ $('pphoto').hidden=true;$('pphoto').src='';$('pphoto').alt='';
+ $('photoAltWrap').hidden=true;$('photoAlt').value='';
+ scheduleSave();
+});
+
+/* ---------------- Autosave / restore ---------------- */
+let saveTimer=null;
+function scheduleSave(){
+ clearTimeout(saveTimer);
+ saveTimer=setTimeout(doSave,450);
+}
+function doSave(){
+ try{
+  const data={
+   fields:{},
+   education:[...document.querySelectorAll('#educationList .entry-block')].map(b=>({
+    school:b.querySelector('.f-school').value,degree:b.querySelector('.f-degree').value,period:b.querySelector('.f-period').value
+   })),
+   experience:[...document.querySelectorAll('#experienceList .entry-block')].map(b=>({
+    role:b.querySelector('.f-role').value,place:b.querySelector('.f-place').value,period:b.querySelector('.f-period').value,desc:b.querySelector('.f-desc').value
+   })),
+   theme:$('cv').style.getPropertyValue('--accent')||'#4f46e5',
+   textColor:$('cv').style.getPropertyValue('--text-color')||'#374151',
+   photo:photoDataUrl,
+   license:$('license').checked
+  };
+  SIMPLE_FIELDS.forEach(id=>data.fields[id]=val(id));
+  localStorage.setItem(STORAGE_KEY,JSON.stringify(data));
+  flashSaved();
+ }catch(e){/* localStorage indisponible : on continue sans sauvegarde */}
+}
+let flashTimer=null;
+function flashSaved(){
+ $('saveStatus').textContent='Modifications enregistrées ✓';
+ clearTimeout(flashTimer);
+ flashTimer=setTimeout(()=>{$('saveStatus').textContent=''},2000);
+}
+const SIMPLE_FIELDS=['name','title','city','email','phone','linkedin','about','skills','languages','hobbies','references','photoAlt'];
+
+function loadSaved(){
+ let raw=null;
+ try{raw=localStorage.getItem(STORAGE_KEY)}catch(e){}
+ if(!raw)return false;
+ let data;
+ try{data=JSON.parse(raw)}catch(e){return false}
+ SIMPLE_FIELDS.forEach(id=>{if(data.fields&&id in data.fields&&$(id))$(id).value=data.fields[id]});
+ $('license').checked=!!data.license;
+ $('educationList').innerHTML='';
+ (data.education&&data.education.length?data.education:[{}]).forEach(e=>$('educationList').appendChild(makeEducationBlock(e)));
+ $('experienceList').innerHTML='';
+ (data.experience&&data.experience.length?data.experience:[{}]).forEach(e=>$('experienceList').appendChild(makeExperienceBlock(e)));
+ if(data.photo){
+  photoDataUrl=data.photo;
+  $('photoPreview').src=photoDataUrl;$('photoPreview').hidden=false;
+  $('pphoto').src=photoDataUrl;$('pphoto').alt=data.fields&&data.fields.photoAlt||'';$('pphoto').hidden=false;
+  $('photoAltWrap').hidden=false;
+ }
+ setTheme(data.theme||'#4f46e5',false);
+ setTextColor(data.textColor||'#374151',false);
+ return true;
+}
+
+/* ---------------- Reset (custom accessible confirm, no native confirm()) ---------------- */
+function showResetConfirm(){
+ const back=document.createElement('div');
+ back.className='modal-backdrop';back.style.display='flex';
+ back.setAttribute('role','dialog');back.setAttribute('aria-modal','true');back.setAttribute('aria-labelledby','resetTitle');
+ back.innerHTML=`<div class="modal">
+   <h2 id="resetTitle" style="margin-top:0">Réinitialiser le formulaire ?</h2>
+   <p>Toutes les informations saisies et la photo seront supprimées de cet appareil. Cette action est irréversible.</p>
+   <button class="danger" id="confirmReset" style="margin-top:6px">Oui, tout effacer</button>
+   <button class="secondary" id="cancelReset">Annuler</button>
+ </div>`;
+ document.body.appendChild(back);
+ const prevFocus=document.activeElement;
+ back.querySelector('#confirmReset').focus();
+ function close(){back.remove();prevFocus&&prevFocus.focus()}
+ back.querySelector('#cancelReset').addEventListener('click',close);
+ back.querySelector('#confirmReset').addEventListener('click',()=>{
+  try{localStorage.removeItem(STORAGE_KEY)}catch(e){}
+  close();
+  location.reload();
+ });
+ back.addEventListener('keydown',e=>{if(e.key==='Escape')close()});
+ back.addEventListener('click',e=>{if(e.target===back)close()});
+}
+$('btnReset').addEventListener('click',showResetConfirm);
+
+/* ---------------- Print / Premium ---------------- */
+$('btnPrint').addEventListener('click',()=>window.print());
+let openerBtn=null;
+$('btnPremium').addEventListener('click',()=>{
+ openerBtn=$('btnPremium');
+ $('checkout').style.display='flex';
+ $('success').style.display='none';
+ $('checkoutError').hidden=true;
+ $('checkoutTitle').focus();
+});
+function closeCheckout(){
+ $('checkout').style.display='none';
+ if(openerBtn)openerBtn.focus();
+}
+$('closeCheckout').addEventListener('click',closeCheckout);
+$('checkout').addEventListener('keydown',e=>{
+ if(e.key==='Escape'){closeCheckout();return}
+ if(e.key==='Tab'){
+  const f=[...$('checkout').querySelectorAll('button,input')].filter(el=>!el.disabled&&el.offsetParent!==null);
+  if(!f.length)return;
+  const first=f[0],last=f[f.length-1];
+  if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus()}
+  else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus()}
+ }
+});
+$('checkout').addEventListener('click',e=>{if(e.target.id==='checkout')closeCheckout()});
+$('btnPay').addEventListener('click',()=>{
+ const number=$('cardnumber').value.replace(/\s/g,'');
+ if(number.length<12){
+  $('checkoutError').textContent="Pour la démo, entre un numéro de carte fictif (ex : 4242 4242 4242 4242).";
+  $('checkoutError').hidden=false;
+  $('cardnumber').focus();
+  return;
+ }
+ $('checkoutError').hidden=true;
+ $('success').style.display='block';
+});
+$('checkoutTitle').setAttribute('tabindex','-1');
+
+/* ---------------- Wire up live preview ---------------- */
+[...document.querySelectorAll('#cvForm input,#cvForm textarea')].forEach(el=>{
+ if(el.id==='photo')return;
+ el.addEventListener('input',()=>{renderPreview();scheduleSave()});
+});
+$('cvForm').addEventListener('submit',e=>e.preventDefault());
+
+/* ---------------- Init ---------------- */
+if(!loadSaved()){
+ setTextColor('#374151',false);
+ $('educationList').appendChild(makeEducationBlock({school:'Lycée Exemple',degree:'Seconde générale',period:'2025 - 2026'}));
+ $('experienceList').appendChild(makeExperienceBlock({role:'Stage d’observation',place:'',period:'',desc:'Découverte du fonctionnement d’une entreprise et participation aux tâches quotidiennes de l’équipe.'}));
+}
+renderPreview();
+})();
 </script>
 </body>
 </html>
