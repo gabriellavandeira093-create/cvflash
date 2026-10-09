@@ -81,6 +81,22 @@ button{border:0;border-radius:10px;padding:12px 16px;font-weight:800;cursor:poin
 .cv-bullets{padding-left:17px;margin:5px 0;font-size:11.5px}.cv-bullets li{margin:3px 0}
 .cv-empty{color:#98a2b3;font-style:italic}
 .print-note{font-size:12px;color:#667085;margin-top:10px}
+
+/* ===== OPTIONS PREMIUM : ajoutées sans modifier le modèle du CV ===== */
+.premium-section{max-width:1250px;margin:10px auto 45px;padding:0 20px}
+.premium-section h2{text-align:center;margin:0 0 8px;font-size:28px}
+.premium-intro{text-align:center;color:#667085;margin:0 auto 22px;max-width:700px}
+.premium-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.premium-card{background:#fff;border:1px solid #e5e7eb;border-radius:16px;padding:22px;box-shadow:0 8px 30px #1720330b;display:flex;flex-direction:column}
+.premium-card h3{margin:0 0 8px;font-size:18px}
+.premium-price{font-size:30px;font-weight:900;color:#4f46e5;margin:5px 0 12px}
+.premium-card p{color:#53607a;font-size:14px;flex:1}
+.premium-card ul{padding-left:19px;color:#53607a;font-size:13px}
+.premium-buy{display:block;text-align:center;background:#4f46e5;color:#fff;text-decoration:none;border-radius:10px;padding:12px 14px;font-weight:800;margin-top:12px}
+.premium-buy:hover{background:#3730a3}
+.premium-note{font-size:12px;color:#667085;text-align:center;max-width:800px;margin:18px auto 0}
+@media(max-width:800px){.premium-grid{grid-template-columns:1fr}}
+
 footer{background:#11182a;color:#c7d0e0;padding:30px 6%;font-size:13px;text-align:center}
 @page{size:A4;margin:0}
 @media(max-width:950px){.container{grid-template-columns:1fr}.cv{transform-origin:top left}.preview-wrap{padding:12px}.hero h1{font-size:36px}}
@@ -266,6 +282,36 @@ footer{background:#11182a;color:#c7d0e0;padding:30px 6%;font-size:13px;text-alig
 </div>
 </div>
 </section>
+
+<section class="premium-section" id="premium">
+  <h2>✨ Les options Premium CVFLASH</h2>
+  <p class="premium-intro">Des petits prix pour soutenir le projet et obtenir des ressources utiles pour ta candidature. La création et le téléchargement du CV restent gratuits.</p>
+  <div class="premium-grid">
+    <article class="premium-card">
+      <h3>📘 Mini-guide CV</h3>
+      <div class="premium-price">1,99 €</div>
+      <p>Un guide pratique pour améliorer ton CV et éviter les erreurs courantes.</p>
+      <ul><li>Conseils de présentation</li><li>Exemples de formulations</li><li>Liste de vérification avant l'envoi</li></ul>
+      <a class="premium-buy" href="#" data-payment="guide">Acheter le mini-guide</a>
+    </article>
+    <article class="premium-card">
+      <h3>✉️ Pack candidature</h3>
+      <div class="premium-price">2,99 €</div>
+      <p>Des conseils et des exemples pour préparer une lettre de motivation adaptée à un stage ou à un premier emploi.</p>
+      <ul><li>Structure de lettre</li><li>Exemples à personnaliser</li><li>Conseils avant l'entretien</li></ul>
+      <a class="premium-buy" href="#" data-payment="pack">Acheter le pack</a>
+    </article>
+    <article class="premium-card">
+      <h3>💜 Soutenir CVFLASH</h3>
+      <div class="premium-price">4,99 €</div>
+      <p>Tu peux soutenir le développement du site pour aider à ajouter de nouvelles fonctions.</p>
+      <ul><li>Contribution unique</li><li>Aucun abonnement</li><li>Le CV gratuit reste disponible</li></ul>
+      <a class="premium-buy" href="#" data-payment="support">Soutenir le projet</a>
+    </article>
+  </div>
+  <p class="premium-note">Paiement sécurisé via Stripe à configurer avant la mise en ligne. N'entre jamais de numéro de carte directement sur CVFLASH. Les liens ci-dessous sont à remplacer par tes liens de paiement réels.</p>
+</section>
+
 </main>
 
 <footer><p>CVFLASH — Tes données restent dans ton navigateur.</p></footer>
